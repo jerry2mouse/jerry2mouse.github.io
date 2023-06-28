@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "博客搭建"
+date:   2023-06-28 10:52:23 +0800
+categories: jekyll update
+---
+
+准备搭建一个博客，放在GitHub Pages上，用github page官方介绍的jekyll来生成。
+
+环境搭建:
+因为jekyll在Ubuntu上安装使用容易些，所以装了一个Ubuntu桌面虚拟机。
+
+在虚拟机内安装vsftpd用于传输文件，博客的生成和预览在虚拟机内完成。
+为此经历和学习了：
+- 下载Ubuntu，安装
+- 新建Linux用户，设置密码
+- 安装vsftpd，vi修改配置文件，学了几个vi命令，i插入，dd删除行，e编辑
+- sudo命令
+- chmod
+- chown
+- ip addr show 查看ip
+- sudo apt install openssh-server -- 安装之后可以使用sftp连接，如果不安装，则不能加密连接
+- cp 拷贝文件

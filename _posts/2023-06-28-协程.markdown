@@ -1,0 +1,30 @@
+---
+layout: post
+title:  "了解协程"
+date:   2023-06-28 10:52:23 +0800
+categories: jekyll update
+---
+在使用lua时知道了协程这个概念，coroutine，co-routine，协作的例程。
+
+
+
+最近看云风的一篇文章[C 的 coroutine 库](https://blog.codingnow.com/2012/07/c_coroutine.html)，想了解一下协程，网上看了一些介绍，其中酷壳的[一个“蝇量级” C 语言协程库](https://coolshell.cn/articles/10975.html)关于C实现协程为什么困难讲的清楚：
+
+> 当今一些具备协程语义的语言，比较重量级的如C#、erlang、golang，以及轻量级的python、lua、javascript、ruby，还有函数式的scala、scheme等。相比之下，作为原生态语言的 C 反而处于尴尬的地位，原因在于 C 依赖于一种叫做栈帧的例程调用，例程内部的状态量和返回值都保留在堆栈上，这意味着生产者和消费者相互之间无法实现平级调用，当然你可以改写成把生产者作为主例程然后将产品作为传递参数调用消费者例程，这样的代码写起来费力不讨好而且看起来会很难受，特别当协程数目达到十万数量级，这种写法就过于僵化了。
+是用汇编保存和恢复寄存器信息。
+
+高阶的语言在C的基础上进行了抽象和封装，隐藏了栈帧的问题，实现了对协程的支持。
+
+
+顺便看了下汇编的指令。
+汇编call指令和ret指令:
+When executing a near call, the processor does the following (see Figure 6-2):
+1. Pushes the current value of the EIP register on the stack.
+2. Loads the offset of the called procedure in the EIP register.
+3. Begins execution of the called procedure.
+When executing a near return, the processor performs these actions:
+1. Pops the top-of-stack value (the return instruction pointer) into the EIP register.
+2. If the RET instruction has an optional n argument, increments the stack pointer by the number of bytes
+specified with the n operand to release parameters from the stack.
+3. Resumes execution of the calling procedure.
+
